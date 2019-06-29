@@ -40,3 +40,5 @@ class GithubReposAdapter : RecyclerView.Adapter<GithubReposAdapter.RepoViewHolde
         }
     }
 }
+
+//usecase : 뷰모델에서의 비지니스를 한 번더 래핑한것

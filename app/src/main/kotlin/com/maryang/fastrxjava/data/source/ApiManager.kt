@@ -41,4 +41,5 @@ object ApiManager {
     val githubApi: GithubApi by lazy {
         githubAdapter.create(GithubApi::class.java)
     }
+
 }

@@ -11,8 +11,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.maryang.fastrxjava.base.BaseApplication
 import com.maryang.fastrxjava.entity.GithubRepo
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_github_repos.*
+import java.util.concurrent.TimeUnit
 
 
 class GithubReposActivity : AppCompatActivity() {
@@ -23,6 +27,9 @@ class GithubReposActivity : AppCompatActivity() {
     private val adapter: GithubReposAdapter by lazy {
         GithubReposAdapter()
     }
+
+    private val searchSubject = PublishSubject.create<String>()
+    private val disposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,21 +44,24 @@ class GithubReposActivity : AppCompatActivity() {
 
         searchText.addTextChangedListener(object : TextWatcher {
 
-            private val WHAT_SEARCH = 0
-            private val handler = Handler(Handler.Callback { message ->
-                when (message.what) {
-                    WHAT_SEARCH ->
-                        searchLoad(message.obj.toString(), true)
-                }
-                false
-            })
+//            private val WHAT_SEARCH = 0
+//            private val handler = Handler(Handler.Callback { message ->
+//                when (message.what) {
+//                    WHAT_SEARCH ->
+//                        searchLoad(message.obj.toString(), true)
+//                }
+//                false
+//            })
 
             override fun afterTextChanged(text: Editable?) {
-                handler.removeCallbacksAndMessages(null)
-                handler.sendMessageDelayed(Message().apply {
-                    what = WHAT_SEARCH
-                    obj = text.toString()
-                }, 400)
+//                handler.removeCallbacksAndMessages(null)
+//                handler.sendMessageDelayed(Message().apply {
+//                    what = WHAT_SEARCH
+//                    obj = text.toString()
+//                }, 400)
+
+                searchSubject.onNext(text.toString())
+
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -62,9 +72,19 @@ class GithubReposActivity : AppCompatActivity() {
         })
     }
 
+    private fun subjectSubscribe() {
+        disposable.add(searchSubject
+            .debounce(400, TimeUnit.MILLISECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                searchLoad(it, true)
+            })
+    }
+
     private fun searchLoad(search: String, showLoading: Boolean) {
         if (showLoading)
             showLoading()
+
         viewModel.searchGithubRepos(search)
             .subscribe(object : DisposableSingleObserver<List<GithubRepo>>() {
                 override fun onSuccess(t: List<GithubRepo>) {

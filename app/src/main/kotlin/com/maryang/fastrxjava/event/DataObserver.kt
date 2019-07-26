@@ -5,6 +5,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.subjects.PublishSubject
 
 object DataObserver {
+
     private val bus = PublishSubject.create<Identifier>()
 
     fun post(parameter: Identifier) {
@@ -13,4 +14,5 @@ object DataObserver {
 
     fun observe() =
         bus.observeOn(AndroidSchedulers.mainThread())
+
 }

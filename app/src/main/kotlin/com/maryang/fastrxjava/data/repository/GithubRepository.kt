@@ -2,6 +2,7 @@ package com.maryang.fastrxjava.data.repository
 
 import com.maryang.fastrxjava.data.source.ApiManager
 import com.maryang.fastrxjava.entity.GithubRepo
+import com.maryang.fastrxjava.entity.UserRepo
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
@@ -32,4 +33,10 @@ class GithubRepository {
     fun unstar(owner: String, repo: String): Completable =
         api.unstar(owner, repo)
             .subscribeOn(Schedulers.io())
+
+    fun getUserRepos(userName: String): Single<List<UserRepo>> {
+        return api.getUserRepos(userName)
+            .subscribeOn(Schedulers.io())
+    }
+
 }

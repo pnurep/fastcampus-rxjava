@@ -15,12 +15,9 @@ import kotlinx.android.synthetic.main.activity_github_repos.*
 
 class GithubReposActivity : BaseViewModelActivity() {
 
-    override val viewModel: GithubReposViewModel by lazy {
-        GithubReposViewModel()
-    }
-    private val adapter: GithubReposAdapter by lazy {
-        GithubReposAdapter()
-    }
+    override val viewModel: GithubReposViewModel by lazy { GithubReposViewModel() }
+
+    private val adapter: GithubReposAdapter by lazy { GithubReposAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,12 +34,12 @@ class GithubReposActivity : BaseViewModelActivity() {
                 viewModel.searchGithubRepos(text.toString())
             }
 
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {; }
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {; }
+
         })
+
         subscribeSearch()
         subscribeDataObserver()
     }
@@ -59,8 +56,7 @@ class GithubReposActivity : BaseViewModelActivity() {
                     adapter.items = t
                 }
 
-                override fun onComplete() {
-                }
+                override fun onComplete() {; }
 
                 override fun onError(e: Throwable) {
                     hideLoading()
@@ -89,4 +85,5 @@ class GithubReposActivity : BaseViewModelActivity() {
         loading.visibility = View.GONE
         refreshLayout.isRefreshing = false
     }
+
 }

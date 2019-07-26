@@ -18,6 +18,7 @@ import org.jetbrains.anko.sdk21.listeners.onClick
 class GithubRepoActivity : BaseActivity() {
 
     companion object {
+
         private const val KEY_REPO = "KEY_REPO"
 
         fun start(context: Context, repo: GithubRepo) {
@@ -27,11 +28,11 @@ class GithubRepoActivity : BaseActivity() {
                 )
             )
         }
+
     }
 
-    private val viewModel: GithubRepoViewModel by lazy {
-        GithubRepoViewModel()
-    }
+    private val viewModel: GithubRepoViewModel by lazy { GithubRepoViewModel() }
+
     private lateinit var repo: GithubRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,6 +73,7 @@ class GithubRepoActivity : BaseActivity() {
                 starCount.text = (if (it) count + 1 else count - 1).toString()
             }
         }
+
         viewModel.onClickStar(repo)
             .subscribe(object : DisposableCompletableObserver() {
                 override fun onComplete() {
@@ -98,4 +100,5 @@ class GithubRepoActivity : BaseActivity() {
         star.imageResource =
             if (show) R.drawable.baseline_star_24 else R.drawable.baseline_star_border_24
     }
+
 }

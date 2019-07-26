@@ -13,7 +13,7 @@
         android:layout_marginStart="@dimen/spacing_500"
         android:layout_marginTop="@dimen/spacing_600"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/ownerName"
@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toStartOf="@id/star"
         app:layout_constraintStart_toStartOf="@id/ownerImage"
         app:layout_constraintTop_toBottomOf="@id/ownerImage"
-        tools:text="Owner Name" />
+        tools:text="Owner Name"/>
 
     <ImageView
         android:id="@+id/star"
@@ -35,7 +35,7 @@
         android:src="@drawable/baseline_star_border_24"
         app:layout_constraintBottom_toBottomOf="@id/ownerName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/ownerName" />
+        app:layout_constraintTop_toTopOf="@id/ownerName"/>
 
     <TextView
         android:id="@+id/starCountLabel"
@@ -47,7 +47,7 @@
         android:textSize="@dimen/font_300"
         app:layout_constraintEnd_toStartOf="@id/watcherCountLabel"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ownerName" />
+        app:layout_constraintTop_toBottomOf="@+id/ownerName"/>
 
     <TextView
         android:id="@+id/watcherCountLabel"
@@ -57,7 +57,7 @@
         android:textSize="@dimen/font_300"
         app:layout_constraintEnd_toStartOf="@id/forkCountLabel"
         app:layout_constraintStart_toEndOf="@id/starCountLabel"
-        app:layout_constraintTop_toTopOf="@+id/starCountLabel" />
+        app:layout_constraintTop_toTopOf="@+id/starCountLabel"/>
 
     <TextView
         android:id="@+id/forkCountLabel"
@@ -68,7 +68,7 @@
         android:textSize="@dimen/font_300"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/watcherCountLabel"
-        app:layout_constraintTop_toTopOf="@+id/starCountLabel" />
+        app:layout_constraintTop_toTopOf="@+id/starCountLabel"/>
 
     <TextView
         android:id="@+id/starCount"
@@ -78,7 +78,7 @@
         app:layout_constraintEnd_toEndOf="@id/starCountLabel"
         app:layout_constraintStart_toStartOf="@id/starCountLabel"
         app:layout_constraintTop_toBottomOf="@+id/starCountLabel"
-        tools:text="0" />
+        tools:text="0"/>
 
     <TextView
         android:id="@+id/watcherCount"
@@ -88,7 +88,7 @@
         app:layout_constraintEnd_toEndOf="@id/watcherCountLabel"
         app:layout_constraintStart_toStartOf="@id/watcherCountLabel"
         app:layout_constraintTop_toBottomOf="@+id/watcherCountLabel"
-        tools:text="0" />
+        tools:text="0"/>
 
     <TextView
         android:id="@+id/forksCount"
@@ -98,6 +98,6 @@
         app:layout_constraintEnd_toEndOf="@id/forkCountLabel"
         app:layout_constraintStart_toStartOf="@id/forkCountLabel"
         app:layout_constraintTop_toBottomOf="@+id/forkCountLabel"
-        tools:text="0" />
+        tools:text="0"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
